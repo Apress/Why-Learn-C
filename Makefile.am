@@ -1,5 +1,5 @@
 ##
-#       "Why Learn C"
+#	"Why Learn C"
 #	Makefile.am
 #
 #	Copyright (C) 2025  Paul J. Lucas
