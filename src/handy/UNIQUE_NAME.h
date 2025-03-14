@@ -1,0 +1,2 @@
+#define UNIQUE_NAME(PREFIX) \
+  NAME2(NAME2(PREFIX,_),__LINE__)

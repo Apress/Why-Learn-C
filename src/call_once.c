@@ -1,0 +1,11 @@
+#include "stdc_threads.h"
+
+struct logger {
+};
+
+#include "call_once.d/call_once.h"
+
+///////////////////////////////////////////////////////////////////////////////
+
+int main() {
+}

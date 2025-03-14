@@ -1,0 +1,7 @@
+enum cx_impl_state {
+  CX_IMPL_INIT,
+  CX_IMPL_TRY,
+  CX_IMPL_THROWN,
+  CX_IMPL_CAUGHT,
+  CX_IMPL_FINALLY
+};
