@@ -11,7 +11,7 @@ char* mstrcat( char const *s1, char const *s2 ) {
 }
 
 int main() {
-  char *const msg = mstrcat( "hello,", " world" );
+  char *const msg = mstrcat( "hello", ", world" );
   puts( msg );
   free( msg );
 }
