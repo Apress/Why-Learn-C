@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 #include "type_traits.d/INT_MAX_EXPR.h"
 #include "type_traits.d/INT_MIN_EXPR.h"
 #include "type_traits.d/IS_ARITHMETIC_EXPR.h"

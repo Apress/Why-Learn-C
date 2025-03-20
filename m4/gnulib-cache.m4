@@ -36,12 +36,13 @@
 #  --aux-dir=. \
 #  --no-conditional-dependencies \
 #  --no-libtool \
-#  --macro-prefix=gl
+#  --macro-prefix=gl \
+#  strnlen
 
 # Specification in the form of a few gnulib-tool.m4 macro invocations:
 gl_LOCAL_DIR([])
 gl_MODULES([
-  
+  strnlen
 ])
 gl_AVOID([])
 gl_SOURCE_BASE([lib])

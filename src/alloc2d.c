@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 #include <stdlib.h>
 
 size_t rup2( size_t n, size_t multiple ) {

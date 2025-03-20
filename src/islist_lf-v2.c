@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 #include <stdatomic.h>
 #include <stddef.h>
 #include <stdint.h>

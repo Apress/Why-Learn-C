@@ -39,8 +39,29 @@ AC_DEFUN([gl_EARLY],
   m4_pattern_allow([^gl_LTLIBOBJS$])dnl a variable
 
   # Pre-early section.
+  AC_REQUIRE([gl_USE_SYSTEM_EXTENSIONS])
   AC_REQUIRE([gl_PROG_AR_RANLIB])
 
+  # Code from module absolute-header:
+  # Code from module extensions:
+  # This is actually already done in the pre-early phase.
+  # AC_REQUIRE([gl_USE_SYSTEM_EXTENSIONS])
+  # Code from module extern-inline:
+  # Code from module fcntl-h:
+  # Code from module gen-header:
+  # Code from module include_next:
+  # Code from module snippet/_Noreturn:
+  # Code from module snippet/arg-nonnull:
+  # Code from module snippet/c++defs:
+  # Code from module snippet/warn-on-use:
+  # Code from module ssize_t:
+  # Code from module stddef-h:
+  # Code from module stdlib-h:
+  # Code from module string-h:
+  # Code from module strnlen:
+  # Code from module sys_types-h:
+  AC_REQUIRE([AC_USE_SYSTEM_EXTENSIONS])
+  # Code from module unistd-h:
 ])
 
 # This macro should be invoked from ./configure.ac, in the section
@@ -62,6 +83,34 @@ AC_DEFUN([gl_INIT],
   gl_COMMON
   gl_source_base='lib'
   gl_source_base_prefix=
+  AC_REQUIRE([gl_EXTERN_INLINE])
+  gl_FCNTL_H
+  gl_FCNTL_H_REQUIRE_DEFAULTS
+  AC_PROG_MKDIR_P
+  gt_TYPE_SSIZE_T
+  gl_STDDEF_H
+  gl_STDDEF_H_REQUIRE_DEFAULTS
+  gl_CONDITIONAL_HEADER([stddef.h])
+  AC_PROG_MKDIR_P
+  gl_STDLIB_H
+  gl_STDLIB_H_REQUIRE_DEFAULTS
+  AC_PROG_MKDIR_P
+  gl_STRING_H
+  gl_STRING_H_REQUIRE_DEFAULTS
+  AC_PROG_MKDIR_P
+  gl_FUNC_STRNLEN
+  gl_CONDITIONAL([GL_COND_OBJ_STRNLEN],
+                 [test $HAVE_DECL_STRNLEN = 0 || test $REPLACE_STRNLEN = 1])
+  AM_COND_IF([GL_COND_OBJ_STRNLEN], [
+    gl_PREREQ_STRNLEN
+  ])
+  gl_STRING_MODULE_INDICATOR([strnlen])
+  gl_SYS_TYPES_H
+  gl_SYS_TYPES_H_REQUIRE_DEFAULTS
+  AC_PROG_MKDIR_P
+  gl_UNISTD_H
+  gl_UNISTD_H_REQUIRE_DEFAULTS
+  AC_PROG_MKDIR_P
   # End of code from modules
   m4_ifval(gl_LIBSOURCES_LIST, [
     m4_syscmd([test ! -d ]m4_defn([gl_LIBSOURCES_DIR])[ ||
@@ -250,8 +299,39 @@ AC_DEFUN([gltests_LIBSOURCES], [
 # This macro records the list of files which have been installed by
 # gnulib-tool and may be removed by future gnulib-tool invocations.
 AC_DEFUN([gl_FILE_LIST], [
-  lib/dummy.c
+  lib/_Noreturn.h
+  lib/arg-nonnull.h
+  lib/c++defs.h
+  lib/fcntl.in.h
+  lib/stddef.in.h
+  lib/stdlib.c
+  lib/stdlib.in.h
+  lib/string.in.h
+  lib/strnlen.c
+  lib/sys_types.in.h
+  lib/unistd.c
+  lib/unistd.in.h
+  lib/warn-on-use.h
   m4/00gnulib.m4
+  m4/absolute-header.m4
+  m4/codeset.m4
+  m4/extensions.m4
+  m4/extern-inline.m4
+  m4/fcntl-o.m4
+  m4/fcntl_h.m4
   m4/gnulib-common.m4
+  m4/include_next.m4
+  m4/locale-en.m4
+  m4/off64_t.m4
+  m4/off_t.m4
+  m4/pid_t.m4
+  m4/ssize_t.m4
+  m4/stddef_h.m4
+  m4/stdlib_h.m4
+  m4/string_h.m4
+  m4/strnlen.m4
+  m4/sys_types_h.m4
+  m4/unistd_h.m4
+  m4/warn-on-use.m4
   m4/zzgnulib.m4
 ])

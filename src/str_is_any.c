@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 #include <string.h>
 
 #include "str_is_any.d/str_is_any.h"

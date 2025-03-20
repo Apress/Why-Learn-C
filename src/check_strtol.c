@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>

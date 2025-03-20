@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 #include <stdio.h>
 
 #include "print_hist.d/print_hist.h"

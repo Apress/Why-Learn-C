@@ -164,9 +164,14 @@ consume_SOURCES=		consume.c \
 				islist.d/functions.h \
 				islist.d/struct.h
 
-cp_v1_SOURCES=			cp-v1.c
-cp_v2_SOURCES=			cp-v2.c
-cp_v3_SOURCES=			cp-v3.c
+cp_v1_SOURCES=			cp-v1.c \
+				cp-v1.d/cp-v1.h
+
+cp_v2_SOURCES=			cp-v2.c \
+				cp-v2.d/cp-v2.h
+
+cp_v3_SOURCES=			cp-v3.c \
+				cp-v3.d/cp-v3.h
 
 cp_v4_SOURCES=			cp-v4.c \
 				cp-v4.d/check_open.h \
@@ -218,15 +223,19 @@ lineno_stack_SOURCES=		lineno_stack.c \
 				handy/ARRAY_SIZE.h \
 				lineno_stack.d/lineno_stack.h
 
-ls_v1_SOURCES=			ls-v1.c
-mstrcat_SOURCES=		mstrcat.c
+ls_v1_SOURCES=			ls-v1.c \
+				ls-v1.d/ls-v1.h
+
+mstrcat_SOURCES=		mstrcat.c \
+				mstrcat.d/mstrcat.h
 
 mtx_lockall_SOURCES=		mtx_lockall.c $(STDC_THREADS) \
 				handy/VA_ARGS_COUNT.h \
 				mtx_lockall.d/mtx_lockall.h \
 				mtx_lockall.d/mtx_lockall-macro.h
 
-orbits_SOURCES=			orbits.c
+orbits_SOURCES=			orbits.c \
+				orbits.d/orbits.h
 
 orbits_fgets_SOURCES=		orbits-fgets.c $(UNIT_TEST) \
 				orbits-fgets.d/orbits-fgets.h
@@ -263,7 +272,8 @@ sample_assert_SOURCES=		sample_assert.c \
 setjmp_error_codes_SOURCES=	setjmp_error_codes.c \
 				setjmp_error_codes.d/setjmp_error_codes.h
 
-setjmp_example_SOURCES=		setjmp_example.c
+setjmp_example_SOURCES=		setjmp_example.c \
+				setjmp_example.d/setjmp_example.h
 
 shrd_obj_SOURCES=		shrd_obj.c $(UNIT_TEST) \
 				shrd_obj.d/shrd_dec.h \
@@ -294,7 +304,8 @@ slist_v2_SOURCES=		slist-v2.c $(UNIT_TEST) \
 				slist-v2.d/slist_front_ptr_example.h \
 				slist-v2.d/structs.h
 
-stat_SOURCES=			stat.c
+stat_SOURCES=			stat.c \
+				stat.d/stat.h
 
 strbuf_SOURCES=			strbuf.c $(UNIT_TEST) \
 				strbuf.d/cleanup.h \
@@ -306,10 +317,14 @@ strbuf_SOURCES=			strbuf.c $(UNIT_TEST) \
 				strbuf.d/struct.h \
 				strbuf.d/take.h
 
-strcat_hard_SOURCES=		strcat-hard.c
+strcat_hard_SOURCES=		strcat-hard.c \
+				strcat-hard.d/strcat-hard.h
+
 strcpy_v1_SOURCES=		strcpy-v1.c
 strcpy_v2_SOURCES=		strcpy-v2.c
-strings_SOURCES=		strings.c
+
+strings_SOURCES=		strings.c \
+				strings.d/strings.h
 
 string_v1_SOURCES=		string-v1.c \
 				string-v1.d/cleanup.h \
@@ -333,11 +348,21 @@ swap16of32_SOURCES=		swap16of32.c $(UNIT_TEST) \
 swap_bytes_SOURCES=		swap_bytes.c $(UNIT_TEST) \
 				swap_bytes.d/swap_bytes.h
 
-swapi_v1_SOURCES=		swapi-v1.c
-swapi_v2_SOURCES=		swapi-v2.c
-swapi_v3_SOURCES=		swapi-v3.c
-tabs_spaces_v1_SOURCES=		tabs_spaces-v1.c
-tabs_spaces_v2_SOURCES=		tabs_spaces-v2.c
+swapi_v1_SOURCES=		swapi-v1.c \
+				swapi-v1.d/swapi-v1.h
+
+swapi_v2_SOURCES=		swapi-v2.c \
+				swapi-v2.d/swapi-v2.h
+
+swapi_v3_SOURCES=		swapi-v3.c \
+				swapi-v3.d/swapi-v3.h
+
+tabs_spaces_v1_SOURCES=		tabs_spaces-v1.c \
+				tabs_spaces-v1.d/tabs_spaces-v1.h
+
+tabs_spaces_v2_SOURCES=		tabs_spaces-v2.c \
+				tabs_spaces-v2.d/tabs_spaces-v2.h
+
 thrd_hello_world_SOURCES=	thrd_hello_world.c $(STDC_THREADS)
 
 token_v1_SOURCES=		token-v1.c \
@@ -359,7 +384,8 @@ user_SOURCES=			user.c \
 				user.d/slist_find.h \
 				user.d/struct-cmp.h
 
-vnsum_SOURCES=			vnsum.c $(UNIT_TEST)
+vnsum_SOURCES=			vnsum.c $(UNIT_TEST) \
+				vnsum.d/vnsum.h
 
 vstr_is_any_SOURCES=		vstr_is_any.c $(UNIT_TEST) \
 				vstr_is_any.d/vstr_is_any.h

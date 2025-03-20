@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 // Answer to chapter 2, exercise 1.
 
 #include <ctype.h>

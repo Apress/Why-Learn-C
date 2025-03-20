@@ -21,6 +21,9 @@
 #ifndef wlc_unit_test_H
 #define wlc_unit_test_H
 
+// local
+#include "config.h"                     /* must go first */
+
 // standard
 #include <stdio.h>
 

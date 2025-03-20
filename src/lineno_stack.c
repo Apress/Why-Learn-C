@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 #include <assert.h>
 
 #include "handy/ARRAY_SIZE.h"

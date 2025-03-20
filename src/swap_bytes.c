@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 #include <stdint.h>
 
 #include "swap_bytes.d/swap_bytes.h"

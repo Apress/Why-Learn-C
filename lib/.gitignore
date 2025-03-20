@@ -1,1 +1,7 @@
 /*.a
+/fcntl.h
+/stddef.h
+/stdlib.h
+/string.h
+/sys
+/unistd.h

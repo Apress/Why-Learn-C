@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 #include <stdint.h>
 
 #include "swap16of32.d/swap16of32.h"

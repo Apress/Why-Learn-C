@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 #include <string.h>
 
 #pragma clang diagnostic ignored "-Wcast-function-type-strict"

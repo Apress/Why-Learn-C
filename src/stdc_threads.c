@@ -19,6 +19,7 @@
 */
 
 // local
+#include "config.h"                     /* must go first */
 #include "stdc_threads.h"
 
 // standard

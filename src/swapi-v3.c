@@ -1,12 +1,10 @@
-void swapi( int *pa, int *pb ) {  // v3 -- with const
-  const int temp = *pa;           // temp won't change
-  *pa = *pb;
-  *pb = temp;
-}
-
-///////////////////////////////////////////////////////////////////////////////
+#include "config.h"                     /* must go first */
 
 #include <stdio.h>
+
+#include "swapi-v3.d/swapi-v3.h"
+
+///////////////////////////////////////////////////////////////////////////////
 
 int main() {
   int x = 1, y = 2;

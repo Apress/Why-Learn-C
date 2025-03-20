@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 #include <setjmp.h>
 
 static jmp_buf env;

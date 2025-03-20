@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 #include <stddef.h>                     /* for max_align_t */
 #include <stdlib.h>
 #include <string.h>

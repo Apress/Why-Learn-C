@@ -1,3 +1,5 @@
+#include "config.h"                     /* must go first */
+
 enum token_kind {
   TOKEN_NONE,
   TOKEN_INT,

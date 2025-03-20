@@ -1,7 +1,5 @@
+#include "config.h"                     /* must go first */
+
 #include <stdio.h>
 
-int main() {
-  int c;
-  while ( (c = getchar()) != EOF )
-    putchar( c );
-}
+#include "cp-v2.d/cp-v2.h"
