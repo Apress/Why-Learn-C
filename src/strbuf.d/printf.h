@@ -5,7 +5,7 @@ int strbuf_printf( struct strbuf *sbuf,
 
   va_list args;
   va_start( args );
-  int raw_len =
+  auto raw_len =
     vsnprintf( buf, sbuf->cap - sbuf->len, format, args );
   va_end( args );
   if ( raw_len <= 0 )

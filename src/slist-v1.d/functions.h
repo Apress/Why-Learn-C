@@ -16,7 +16,7 @@
   if ( head == nullptr )
     return nullptr;
   *phead = head->next;
-  void *const data = head->data;
+  auto const data = head->data;
   free( head );
   return data;
 }
