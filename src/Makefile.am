@@ -23,7 +23,6 @@ bin_PROGRAMS=			acquire_release \
 				args \
 				c23_strtol \
 				call_once \
-				cap_first \
 				cas_impl \
 				c_exception \
 				check_strtol \
@@ -71,7 +70,6 @@ bin_PROGRAMS=			acquire_release \
 				vnsum \
 				vstr_is_any \
 				wlc_string \
-				words \
 				wrap_setjmp
 
 check_PROGRAMS=			c23_strtol \
@@ -122,8 +120,6 @@ c23_strtol_SOURCES=		c23_strtol.c $(UNIT_TEST) \
 
 call_once_SOURCES=		call_once.c $(STDC_THREADS) \
 				call_once.d/call_once.h
-
-cap_first_SOURCES=		cap_first.c
 
 cas_impl_SOURCES=		cas_impl.c \
 				cas_impl.d/cas_impl.h
