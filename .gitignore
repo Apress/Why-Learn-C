@@ -1,6 +1,7 @@
 *~
 .deps/
 .DS_Store
+*.gz
 *.in
 *.log
 Makefile
@@ -9,18 +10,13 @@ Makefile
 .*.s[a-v][a-z]
 .*.sw[a-p]
 
-/*.gz
 /aclocal.m4
-/ar-lib
 /autom4te.cache/
 /compile
-/confdefs.h
 /config.guess
-/config.log
 /config.status
 /config.sub
 /configure
-/conftest*
 /depcomp
 /install-sh
 /missing
