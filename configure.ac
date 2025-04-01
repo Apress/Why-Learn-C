@@ -50,6 +50,9 @@ PJL_COMPILE([pthread_mutex_timedlock],
   [pthread_mutex_timedlock( NULL, NULL );]
 )
 
+# Checks for library functions.
+AC_SEARCH_LIBS([call_once],[stdthreads])
+
 # Makefile conditionals.
 AM_CONDITIONAL([HAVE___STDC_NO_THREADS__],
                [test x$pjl_cv___STDC_NO_THREADS__ = xyes])
