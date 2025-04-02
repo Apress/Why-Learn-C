@@ -36,14 +36,14 @@
 
 AC_DEFUN([PJL_CHECK_LANG], [
   AC_REQUIRE([AC_COMPILE_IFELSE])
-  AC_CACHE_CHECK([whether C compiler supports $1], [pjl_cv_check_lang],
+  AC_CACHE_CHECK([whether C compiler supports $1], [pjl_cv_$1],
     [AC_COMPILE_IFELSE(
       [AC_LANG_PROGRAM([$2], [$3])],
-      [pjl_cv_check_lang=yes],
-      [pjl_cv_check_lang=no]
+      [pjl_cv_$1=yes],
+      [pjl_cv_$1=no]
     )
   ])
-  if test "$pjl_cv_check_lang" = "no"; then
+  if test "$pjl_cv_$1" = "no"; then
     AC_MSG_ERROR(["$1" not supported by C compiler])
   fi
 ])

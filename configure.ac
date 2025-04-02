@@ -58,7 +58,7 @@ PJL_CHECK_LANG([static_assert],[],[static_assert(1,"");])
 PJL_CHECK_LANG([thread_local],[],[static thread_local int x;])
 PJL_CHECK_LANG([typeof],[],[typeof(0) x;])
 PJL_CHECK_LANG([typeof_unqual],[],[typeof_unqual(0) x;])
-PJL_CHECK_LANG([no-named-parameter variadic functions],[void f(...) { }],[])
+PJL_CHECK_LANG([no_named_parameter_variadic_functions],[void f(...) { }],[])
 PJL_CHECK_LANG([__VA_OPT__],
   [#define VA_OPT_TEST(...) __VA_OPT__(int) __VA_ARGS__
   ],
