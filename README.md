@@ -52,6 +52,11 @@ for the larger examples:
 
     make
 
+If you get linker errors
+like "undefined reference to `__atomic_load`",
+add `LDFLAGS=-latomic`
+to your `configure` command.
+
 Optionally,
 you can also run unit tests
 for the larger examples:
