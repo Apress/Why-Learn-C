@@ -1,5 +1,6 @@
 #include "config.h"                     /* must go first */
 
+#include <stdint.h>
 #include <stdlib.h>
 
 #include "slist-v1.d/struct.h"

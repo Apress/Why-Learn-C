@@ -1,5 +1,6 @@
 #include "stdc_threads.h"
 
+#include <stdint.h>
 #include <stdlib.h>
 
 struct slist {

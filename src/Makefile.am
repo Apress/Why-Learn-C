@@ -92,7 +92,7 @@ check_PROGRAMS=			c23_strtol \
 
 AM_CFLAGS=			$(WHY_C_CFLAGS)
 AM_CPPFLAGS= 			-I$(top_srcdir)/lib -I$(top_builddir)/lib
-LDADD=				$(top_builddir)/lib/libgnu.a
+LDADD=				$(top_builddir)/lib/libgnu.a -lm
 
 STDC_THREADS=			stdc_threads.h
 if HAVE___STDC_NO_THREADS__
