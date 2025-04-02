@@ -1,7 +1,7 @@
 ##
 # SYNOPSIS
 #
-#     PJL_CHECK_LANG(label, include(s), program)
+#     PJL_MUST_COMPILE(label, include(s), program)
 #
 # DESCRIPTION
 #
@@ -34,7 +34,7 @@
 
 #serial 1
 
-AC_DEFUN([PJL_CHECK_LANG], [
+AC_DEFUN([PJL_MUST_COMPILE], [
   AC_REQUIRE([AC_COMPILE_IFELSE])
   AC_CACHE_CHECK([whether C compiler supports $1], [pjl_cv_$1],
     [AC_COMPILE_IFELSE(

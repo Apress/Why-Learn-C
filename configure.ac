@@ -45,21 +45,21 @@ gl_INIT
 # Checks for typedefs, structures, and compiler characteristics.
 CFLAGS_ORIG="$CFLAGS"
 CFLAGS="$CFLAGS $WHY_C_CFLAGS"
-PJL_CHECK_LANG([alignas],[],[alignas(int) char x;])
-PJL_CHECK_LANG([auto],[],[auto x = 0;])
-PJL_CHECK_LANG([bool],[],[bool x;])
-PJL_CHECK_LANG([constexpr],[],[constexpr int x = 0;])
-PJL_CHECK_LANG([noreturn],
+PJL_MUST_COMPILE([alignas],[],[alignas(int) char x;])
+PJL_MUST_COMPILE([auto],[],[auto x = 0;])
+PJL_MUST_COMPILE([bool],[],[bool x;])
+PJL_MUST_COMPILE([constexpr],[],[constexpr int x = 0;])
+PJL_MUST_COMPILE([noreturn],
   [[#include <stdlib.h>
   [[noreturn]] void f() { exit(0); }]],
   [])
-PJL_CHECK_LANG([nullptr],[],[void *p = nullptr;])
-PJL_CHECK_LANG([static_assert],[],[static_assert(1,"");])
-PJL_CHECK_LANG([thread_local],[],[static thread_local int x;])
-PJL_CHECK_LANG([typeof],[],[typeof(0) x;])
-PJL_CHECK_LANG([typeof_unqual],[],[typeof_unqual(0) x;])
-PJL_CHECK_LANG([no_named_parameter_variadic_functions],[void f(...) { }],[])
-PJL_CHECK_LANG([__VA_OPT__],
+PJL_MUST_COMPILE([nullptr],[],[void *p = nullptr;])
+PJL_MUST_COMPILE([static_assert],[],[static_assert(1,"");])
+PJL_MUST_COMPILE([thread_local],[],[static thread_local int x;])
+PJL_MUST_COMPILE([typeof],[],[typeof(0) x;])
+PJL_MUST_COMPILE([typeof_unqual],[],[typeof_unqual(0) x;])
+PJL_MUST_COMPILE([no_named_parameter_variadic_functions],[void f(...) { }],[])
+PJL_MUST_COMPILE([__VA_OPT__],
   [#define VA_OPT_TEST(...) __VA_OPT__(int) __VA_ARGS__
   ],
   [int x1 = VA_OPT_TEST() 1; VA_OPT_TEST(x2 = 2);]
