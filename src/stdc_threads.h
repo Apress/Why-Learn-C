@@ -18,6 +18,9 @@
 **      along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// local
+#include "config.h"                     /* must go first */
+
 #ifndef __STDC_NO_THREADS__
 #include <threads.h>
 #else
@@ -30,9 +33,6 @@
  * Declares types, constants, and function wrappers around POSIX threads for
  * standard C11 threads when __STDC_NO_THREADS__ is defined to 1.
  */
-
-// local
-#include "config.h"                     /* must go first */
 
 // standard
 #include <errno.h>
