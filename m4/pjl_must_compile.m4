@@ -36,7 +36,7 @@
 
 AC_DEFUN([PJL_MUST_COMPILE], [
   AC_REQUIRE([AC_COMPILE_IFELSE])
-  AC_CACHE_CHECK([whether C compiler supports $1], [pjl_cv_$1],
+  AC_CACHE_CHECK([for $1], [pjl_cv_$1],
     [AC_COMPILE_IFELSE(
       [AC_LANG_PROGRAM([$2], [$3])],
       [pjl_cv_$1=yes],
