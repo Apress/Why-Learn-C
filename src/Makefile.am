@@ -359,7 +359,8 @@ tabs_spaces_v1_SOURCES=		tabs_spaces-v1.c \
 tabs_spaces_v2_SOURCES=		tabs_spaces-v2.c \
 				tabs_spaces-v2.d/tabs_spaces-v2.h
 
-thrd_hello_world_SOURCES=	thrd_hello_world.c $(STDC_THREADS)
+thrd_hello_world_SOURCES=	thrd_hello_world.c $(STDC_THREADS) \
+				thrd_hello_world.d/thrd_hello_world.h
 
 token_v1_SOURCES=		token-v1.c \
 				token-v1.d/token.h \

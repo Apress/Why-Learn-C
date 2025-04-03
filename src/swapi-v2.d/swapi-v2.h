@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 void swapi( int *pa, int *pb ) {  // v2 -- correct
   int temp = *pa;
   *pa = *pb;
