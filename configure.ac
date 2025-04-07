@@ -62,6 +62,11 @@ PJL_MUST_COMPILE([thread_local],[],[static thread_local int x;])
 PJL_MUST_COMPILE([typeof],[],[typeof(0) x;])
 PJL_MUST_COMPILE([typeof_unqual],[],[typeof_unqual(0) x;])
 PJL_MUST_COMPILE([no_named_parameter_variadic_functions],[void f(...) { }],[])
+PJL_MUST_COMPILE([c23_va_start],
+  [#include <stdarg.h>
+  void c23_va_start(...) { va_list args; va_start( args ); }],
+  [c23_va_start();]
+)
 PJL_MUST_COMPILE([__VA_OPT__],
   [#define VA_OPT_TEST(...) __VA_OPT__(int) __VA_ARGS__
   ],
