@@ -15,3 +15,9 @@ Specifically,
 larger examples
 are split into several files
 so each can be included seperately.
+
+That's also why most are `.h` files
+rather than `.c` files.
+If they were `.c` files,
+`clang` would warn
+about including a `.c` file.
