@@ -9,5 +9,5 @@ void fl_print_error( char const *file, int line,
   va_end( args );
 }
 
-#define print_error(FILE,LINE,FORMAT,...) \
+#define print_error(FORMAT,...) \
   fl_print_error(__FILE__, __LINE__, (FORMAT), __VA_ARGS__)
