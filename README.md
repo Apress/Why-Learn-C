@@ -3,7 +3,7 @@
 This repository accompanies [*Why Learn C*](https://www.link.springer.com/book/10.1007/%eisbn%) by Paul J. Lucas (Apress, 2025).
 
 [comment]: #cover
-![Cover image](%isbn%.jpg)
+![Cover image](979-8-8688-1596-6.jpg)
 
 Download the files as a zip using the green button, or clone the repository to your machine using Git.
 
