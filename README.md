@@ -1,6 +1,6 @@
 # Apress Source Code
 
-This repository accompanies [*Why Learn C*](https://www.link.springer.com/book/10.1007/%eisbn%) by Paul J. Lucas (Apress, 2025).
+This repository accompanies [*Why Learn C*]([https://www.link.springer.com/book/10.1007/%eisbn%](https://link.springer.com/book/9798868815966)) by Paul J. Lucas (Apress, 2025).
 
 [comment]: #cover
 ![Cover image](979-8-8688-1596-6.jpg)
