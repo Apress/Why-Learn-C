@@ -21,7 +21,9 @@
 ACLOCAL_AMFLAGS=	-I m4
 SUBDIRS=		lib src
 
-EXTRA_DIST=		bootstrap \
+EXTRA_DIST=		979-8-8688-1596-6.jpg \
+			bootstrap \
+			Contributing.md \
 			m4/gnulib-cache.m4 \
 			README.md \
 			src/handy
