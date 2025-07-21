@@ -144,10 +144,11 @@ int thrd_create( thrd_t *t, thrd_start_t start_fn, void *user_data ) {
 
 int thrd_join( thrd_t t, int *pthrd_value ) {
   void *pthread_value;
-  int const join_rv = pthread_join( t, &pthread_value );
+  if ( pthread_join( t, &pthread_value ) != 0 )
+    return thrd_error;
   if ( pthrd_value != nullptr )
     *pthrd_value = (int)(intptr_t)pthread_value;
-  return join_rv == 0 ? thrd_success : thrd_error;
+  return thrd_success;
 }
 
 int thrd_sleep( struct timespec const *duration, struct timespec *remaining ) {
