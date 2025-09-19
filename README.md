@@ -1,11 +1,16 @@
 # Apress Source Code
 
-This repository accompanies [*Why Learn C*](https://link.springer.com/book/9798868815966) by Paul J. Lucas (Apress, 2025).
+This repository accompanies
+[*Why Learn C*](https://link.springer.com/book/9798868815966)
+by
+[Paul J. Lucas](https://github.com/paul-j-lucas)
+(Apress, 2025).
 
 [comment]: #cover
 ![Cover image](979-8-8688-1596-6.jpg)
 
-Download the files as a zip using the green button, or clone the repository to your machine using Git.
+Download the files using the green button,
+or clone the repository to your machine using Git.
 
 ## Releases
 
@@ -34,6 +39,10 @@ installed,
 you can generate `configure` yourself by doing:
 
     ./bootstrap
+
+or you can download a
+[released version](https://github.com/Apress/Why-Learn-C/releases)
+that contains `configure`.
 
 After that:
 
