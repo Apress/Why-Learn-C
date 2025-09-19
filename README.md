@@ -9,7 +9,8 @@ Download the files as a zip using the green button, or clone the repository to y
 
 ## Releases
 
-Release v1.0 corresponds to the code in the published book, without corrections or updates.
+Release [1.0](https://github.com/Apress/Why-Learn-C/releases/tag/wlc-1.0) corresponds to the code in the published book,
+without corrections or updates.
 
 ## Installation
 
