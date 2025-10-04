@@ -80,3 +80,10 @@ See the file
 for more information
 on how you can contribute
 to this repository.
+
+## Errata
+
+See the file
+[`Errata.md`](https://github.com/Apress/Why-Learn-C/blob/main/Errata.md)
+for errata
+to the published content.
