@@ -37,7 +37,6 @@ build:
 	$(MAKE) -C src
 
 update-gnulib:
-	gnulib-tool --add-import
-	rm -f m4/.gitignore
+	gnulib-tool --add-import --no-vc-files
 
 # vim:set noet sw=8 ts=8:
