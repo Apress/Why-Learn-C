@@ -39,13 +39,14 @@ release [1.0](https://github.com/Apress/Why-Learn-C/releases/tag/wlc-1.0)
 corresponds to the initial code
 in the first edition
 without corrections;
-release 1.0.1
+release [1.0.1](https://github.com/Apress/Why-Learn-C/releases/tag/wlc-1.0.1)
 corresponds to updates
 to
 command-line options in makefiles
 and
 Autoconf macros,
-but no corrections to the published book.
+but no corrections to the published book;
+etc.
 
 ## Installation
 
