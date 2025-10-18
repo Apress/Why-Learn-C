@@ -131,7 +131,6 @@ PJL_CHECK_COMPILE_FLAG([-Wunreachable-code-return], [WHY_C_CFLAGS])
 PJL_CHECK_COMPILE_FLAG([-Wunreachable-code], [WHY_C_CFLAGS])
 PJL_CHECK_COMPILE_FLAG([-Wunused], [WHY_C_CFLAGS])
 PJL_CHECK_COMPILE_FLAG([-Wwrite-strings], [WHY_C_CFLAGS])
-PJL_CHECK_COMPILE_FLAG([-Wzero-as-null-pointer-constant], [WHY_C_CFLAGS])
 
 # Generate files.
 AH_TOP([#ifndef Why_C_config_H
