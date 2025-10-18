@@ -5,6 +5,13 @@ See the end of the file for license conditions.
 
 -------------------------------------------------------------------------------
 
+* Changes in 1.0.1
+
++ Added new `PJL_CHECK_COMPILE_FLAG` and supporting m4 macros.
++ Now using `--no-vc-files` for `gnulib-tool`.
++ Removed `-Wzero-as-null-pointer-constant` warning — not valid for C.
+
+
 * Changes in 1.0
 
 ** Initial version
