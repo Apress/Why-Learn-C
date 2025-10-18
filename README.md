@@ -14,8 +14,38 @@ or clone the repository to your machine using Git.
 
 ## Releases
 
-Release [1.0](https://github.com/Apress/Why-Learn-C/releases/tag/wlc-1.0) corresponds to the code in the published book,
-without corrections or updates.
+Releases are numbered using a form of
+[semantic versioning](https://semver.org)
+except instead of _major_._minor_._patch_,
+_edition_._errata_._patch_
+is used instead where:
+
++ _edition_ corresponds to the edition of the published book,
+  e.g., 1 = first edition, etc.
++ _errata_ corresponds to a correction mentioned in the
+  [errata](https://github.com/Apress/Why-Learn-C/blob/main/Errata.md)
+  for the published book.
++ _patch_ corresponds to an update
+  only to the “support” files
+  in this respository,
+  but _not_ in the published book,
+  e.g., makefiles,
+  Autoconf macros,
+  Gnulib source files,
+  etc.
+
+For example,
+release [1.0](https://github.com/Apress/Why-Learn-C/releases/tag/wlc-1.0)
+corresponds to the initial code
+in the first edition
+without corrections;
+release 1.0.1
+corresponds to updates
+to
+command-line options in makefiles
+and
+Autoconf macros,
+but no corrections to the published book.
 
 ## Installation
 
@@ -86,4 +116,4 @@ to this repository.
 See the file
 [`Errata.md`](https://github.com/Apress/Why-Learn-C/blob/main/Errata.md)
 for errata
-to the published content.
+to the published book.
