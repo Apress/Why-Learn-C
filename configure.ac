@@ -133,9 +133,9 @@ PJL_CHECK_COMPILE_FLAG([-Wunused], [WHY_C_CFLAGS])
 PJL_CHECK_COMPILE_FLAG([-Wwrite-strings], [WHY_C_CFLAGS])
 
 # Generate files.
-AH_TOP([#ifndef Why_C_config_H
-#define Why_C_config_H])
-AH_BOTTOM([#endif /* Why_C_config_H */])
+AH_TOP([#ifndef Why_Learn_C_config_H
+#define Why_Learn_C_config_H])
+AH_BOTTOM([#endif /* Why_Learn_C_config_H */])
 AC_CONFIG_HEADERS([src/config.h])
 AC_CONFIG_FILES([
   Makefile
