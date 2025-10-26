@@ -47,11 +47,16 @@ CFLAGS_ORIG="$CFLAGS"
 CFLAGS="$CFLAGS $WHY_C_CFLAGS"
 PJL_MUST_COMPILE([alignas],[],[alignas(int) char x;])
 PJL_MUST_COMPILE([auto],[],[auto x = 0;])
-PJL_MUST_COMPILE([bool],[],[bool x;])
+PJL_MUST_COMPILE([bool],[],[bool x = false;])
 PJL_COMPILE([constexpr],[],[constexpr int x = 0;])
 if test "$pjl_cv_constexpr" = "no"; then
   AC_DEFINE([constexpr],[const],[Define to const.])
 fi
+PJL_MUST_COMPILE([digit_separators], [], [int x = 1'000;])
+# Balance ' on previous line to resume proper vim syntax highlighting.
+PJL_MUST_COMPILE([empty_aggregate_initialization], [], [int a[2] = { };])
+PJL_MUST_COMPILE([fixed_type_enumerations], [], [enum E : char { E1 };])
+PJL_MUST_COMPILE([function_unnamed_parameters],[void f( int ) { }], [])
 PJL_MUST_COMPILE([noreturn],
   [[#include <stdlib.h>
   [[noreturn]] void f() { exit(0); }]],
