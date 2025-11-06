@@ -4,7 +4,7 @@ This directory contains
 the C source code
 for the larger examples
 used in the book
-_Why Learn C_.
+[_Why Learn C_](https://link.springer.com/book/9798868815966).
 
 The source files are arranged
 to make direct inclusion
