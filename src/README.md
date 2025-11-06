@@ -1,4 +1,4 @@
-# Why Learn C --- Source Code
+# Why Learn C &mdash; Source Code
 
 This directory contains
 the C source code
