@@ -2,8 +2,8 @@
 
 Copyright for Apress source code belongs to the author(s).
 However,
-under fair use you
-are encouraged to fork
+under fair use,
+you are encouraged to fork
 and contribute
 minor corrections
 and updates
