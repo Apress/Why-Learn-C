@@ -13,11 +13,14 @@ via the `\lstinputlisting` command
 easy.
 The main source file for an example
 is prefixed by either a two-digit chapter number
-or a single-letter appendix letter.
+or a single appendix letter.
 Larger examples
 are split into several files
-so each can be included seperately
+so each can be included
+as a separate listing
 into a LaTeX document.
+You'd never arrange source files this way
+for a real C project.
 
 That's also why most are `.h` files
 rather than `.c` files.
