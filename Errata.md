@@ -8,4 +8,14 @@ as issues are identified.
 
 ## Errata for the First Edition
 
-None.
+### Chapter 1: A Tour of C
+
++ §1.5 Memory (p. 14)
+
+  Where it says:
+
+  > ... any signed integer −127 to 128, ...
+
+  it should instead say:
+
+  > ... any signed integer −128 to 127, ...
