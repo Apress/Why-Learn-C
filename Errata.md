@@ -26,6 +26,6 @@ as issues are identified.
 
   It should include a reference on p. 296.
 
-+ variadic function
++ variadic function (p. 402)
 
   It should _not_ include a reference on p. 296.
