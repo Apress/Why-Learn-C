@@ -5,6 +5,14 @@ See the end of the file for license conditions.
 
 -------------------------------------------------------------------------------
 
+* Changes in 1.1
+
++ Fixed signed `char` range.
++ Added missing `nullptr` index reference.
++ Removed erronous variadic function index reference.
++ Replaced `IS_SAME_TYPE` with better version.
+
+
 * Changes in 1.0.1
 
 + Added new `PJL_CHECK_COMPILE_FLAG` and supporting m4 macros.

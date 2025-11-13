@@ -156,7 +156,26 @@ int main( int argc, char const *const argv[] ) {
   TEST(  IS_POINTER_EXPR( pi ) );
 
   TEST(  IS_SAME_TYPE( int, int ) );
+  TEST(  IS_SAME_TYPE( int, int const ) );
+  TEST(  IS_SAME_TYPE( int const, int ) );
+  TEST(  IS_SAME_TYPE( int const, int const ) );
+
+  TEST(  IS_SAME_TYPE( int*, int* ) );
+  TEST( !IS_SAME_TYPE( int*, int const* ) );
+  TEST( !IS_SAME_TYPE( int const*, int* ) );
+  TEST(  IS_SAME_TYPE( int const*, int const* ) );
+
+  TEST(  IS_SAME_TYPE( int (*)(), int (*)() ) );
+  TEST( !IS_SAME_TYPE( int (*)(), void (*)() ) );
+  TEST( !IS_SAME_TYPE( int (*)(), int (*)(int) ) );
+
+  TEST( !IS_SAME_TYPE( int**, int const** ) );
+
   TEST( !IS_SAME_TYPE( int, unsigned ) );
+  TEST( !IS_SAME_TYPE( unsigned, int ) );
+
+  TEST(  IS_SAME_TYPE( struct S, struct S ) );
+  TEST(  IS_SAME_TYPE( void, void ) );
 
   (void)( test_IS_SIGNED_EXPR() &&
           test_IS_UNSIGNED_EXPR() &&
