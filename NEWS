@@ -7,9 +7,6 @@ See the end of the file for license conditions.
 
 * Changes in 1.1
 
-+ Fixed signed `char` range.
-+ Added missing `nullptr` index reference.
-+ Removed erronous variadic function index reference.
 + Replaced `IS_SAME_TYPE` with better version.
 
 
