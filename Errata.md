@@ -19,3 +19,13 @@ as issues are identified.
   it should instead say:
 
   > ... any signed integer −128 to 127, ...
+
+### Index
+
++ `nullptr` (p. 395)
+
+  It should include a reference on p. 296.
+
++ variadic function
+
+  It should _not_ include a reference on p. 296.
