@@ -26,6 +26,7 @@ EXTRA_DIST=		979-8-8688-1596-6.jpg \
 			Contributing.md \
 			Errata.md \
 			m4/gnulib-cache.m4 \
+			m4/update_m4.sh \
 			README.md \
 			src/handy
 
