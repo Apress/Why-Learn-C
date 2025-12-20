@@ -113,7 +113,8 @@ acquire_release_SOURCES=	17-acquire_release.c \
 alloc2d_SOURCES=		06-alloc2d.c \
 				alloc2d.d/alloc2d.h
 
-args_SOURCES=			09-args.c
+args_SOURCES=			09-args.c \
+				args.d/main.h
 
 c23_strtol_SOURCES=		C-c23_strtol.c $(UNIT_TEST) \
 				c23_strtol.d/c23_strtol.h
