@@ -98,6 +98,15 @@ like "undefined reference to `__atomic_load`",
 add `LDFLAGS=-latomic`
 to your `configure` command.
 
+If you _still_ get linker errors,
+remove `LDFLAGS=-latomic`
+and add `--disable-atomics` instead
+to your `configure` command:
+
+    ./configure --disable-atomics
+
+to disable building the atomic example code.
+
 Optionally,
 you can also run unit tests
 for the larger examples:

@@ -18,21 +18,18 @@
 #	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
-bin_PROGRAMS=			acquire_release \
-				alloc2d \
+bin_PROGRAMS=			alloc2d \
 				args \
 				c23_strtol \
 				call_once \
-				cas_impl \
 				c_exception \
 				check_strtol \
 				cnd_example \
-				consume \
 				cp-v1 cp-v2 cp-v3 cp-v4 \
 				fatal_error \
 				fl_print_error \
 				hash_table \
-				islist islist_lf islist_lf-v2 \
+				islist \
 				itoken \
 				lineno_stack \
 				ls-v1 \
@@ -49,7 +46,6 @@ bin_PROGRAMS=			acquire_release \
 				sample_assert \
 				setjmp_error_codes \
 				setjmp_example \
-				shrd_obj \
 				slist-v1 slist-v1-mtx slist-v2 \
 				stat \
 				strbuf \
@@ -72,6 +68,14 @@ bin_PROGRAMS=			acquire_release \
 				wlc_string \
 				wrap_setjmp
 
+if ENABLE_ATOMICS
+bin_PROGRAMS+=			acquire_release \
+				cas_impl \
+				consume \
+				islist_lf islist_lf-v2 \
+				shrd_obj
+endif
+
 check_PROGRAMS=			c23_strtol \
 				c_exception \
 				hash_table \
@@ -79,7 +83,6 @@ check_PROGRAMS=			c23_strtol \
 				mtx_lockall \
 				orbits-fgets orbits-fscanf \
 				qsort_example \
-				shrd_obj \
 				slist-v1 slist-v1-mtx slist-v2 \
 				str_is_any \
 				strbuf \
@@ -89,6 +92,10 @@ check_PROGRAMS=			c23_strtol \
 				type_traits \
 				vnsum \
 				vstr_is_any
+
+if ENABLE_ATOMICS
+check_PROGRAMS+=		shrd_obj
+endif
 
 AM_CFLAGS=			$(WHY_C_CFLAGS)
 AM_CPPFLAGS= 			-I$(top_srcdir)/lib -I$(top_builddir)/lib

@@ -42,6 +42,17 @@ AC_CHECK_HEADERS([sysexits.h])
 AC_HEADER_ASSERT
 gl_INIT
 
+# Feature: Atomics (enabled by default)
+#
+# This doesn't simply check for __STDC_NO_ATOMICS__ because apparently some
+# platforms don't define it, yet don't fully support atomics.
+AC_ARG_ENABLE([atomics],
+  AS_HELP_STRING([--disable-atomics], [disable _Atomic examples])
+)
+AS_IF([test "x$enable_atomics" != xno], [
+  AC_DEFINE([ENABLE_ATOMICS], [1], [Define to 1 if atomics are enabled.])
+])
+
 # Checks for typedefs, structures, and compiler characteristics.
 CFLAGS_ORIG="$CFLAGS"
 CFLAGS="$CFLAGS $WHY_C_CFLAGS"
@@ -90,6 +101,7 @@ PJL_COMPILE([pthread_mutex_timedlock],
 AC_SEARCH_LIBS([call_once],[stdthreads])
 
 # Makefile conditionals.
+AM_CONDITIONAL([ENABLE_ATOMICS], [test "x$enable_atomics" != xno])
 AM_CONDITIONAL([HAVE___STDC_NO_THREADS__],
                [test x$pjl_cv___STDC_NO_THREADS__ = xyes])
 
