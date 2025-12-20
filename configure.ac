@@ -21,7 +21,7 @@
 ##
 
 AC_PREREQ([2.69])
-AC_INIT([Why_Learn_C], [1.1], [https://github.com/Apress/Why-Learn-C/issues],,[https://github.com/Apress/Why-Learn-C])
+AC_INIT([Why_Learn_C], [1.2], [https://github.com/Apress/Why-Learn-C/issues],,[https://github.com/Apress/Why-Learn-C])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 

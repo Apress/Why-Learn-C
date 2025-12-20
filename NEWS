@@ -5,6 +5,19 @@ See the end of the file for license conditions.
 
 -------------------------------------------------------------------------------
 
+* Changes in 1.2
+
++ Removed illegal use of `*` with `auto` in listing 14.4, line 15.  (It's
+  erroneously allowed by `clang`, but correctly disallowed by `gcc`.)
+
++ Fixed compiling of `09-args.c` on some platforms.
+
++ Added `--disable-atomics` for `configure` since some compilers don't fully
+  support atomics despite a claim to the contrary.
+
++ Disabled some overly pendantic `gcc` warnings.
+
+
 * Changes in 1.1
 
 + Replaced `IS_SAME_TYPE` with better version.
