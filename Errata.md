@@ -20,6 +20,24 @@ as issues are identified.
 
   > ... any signed integer −128 to 127, ...
 
+### Chapter 14: Multithreading
+
++ §14.4 Mutexes (p. 223)
+
+  Where listing 14.4, line 15, says:
+
+  ```c
+  auto *const data = head != nullptr ?
+  ```
+
+  it should instead say:
+
+  ```c
+  auto const data = head != nullptr ?
+  ```
+
+  (The `*` was erronously allowed by `clang`, but is illegal in C.)
+
 ### Chapter 19: `_Generic`
 
 + §19.6 Type Traits (p. 296)

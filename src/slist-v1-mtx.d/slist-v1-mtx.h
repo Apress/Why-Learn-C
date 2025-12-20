@@ -12,7 +12,7 @@ void slist_push_mtx( struct slist **phead, void *data,
 [[nodiscard]] void* slist_peek_mtx( struct slist *head,
                                     mtx_t *mtx ) {
   mtx_lock( mtx );
-  auto *const data = head != nullptr ?
+  auto const data = head != nullptr ?
     head->data : nullptr;
   mtx_unlock( mtx );
   return data;
