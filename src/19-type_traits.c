@@ -119,14 +119,43 @@ static bool test_TO_UNSIGNED_EXPR() {
   TEST_FUNC_END();
 }
 
-enum test_enum_underlying_type : unsigned char {
-  TEST_ENUM_UNDERLYING_TYPE
-};
+enum enum_char              :          char       { ENUM_CHAR               };
+enum enum_signed_char       :   signed char       { ENUM_SIGNED_CHAR        };
+enum enum_short             :          short      { ENUM_SHORT              };
+enum enum_int               :          int        { ENUM_INT                };
+enum enum_long              :          long       { ENUM_LONG               };
+enum enum_long_long         :     long long       { ENUM_LONG_LONG          };
+enum enum_unsigned_char     : unsigned char       { ENUM_UNSIGNED_CHAR      };
+enum enum_unsigned_short    : unsigned short      { ENUM_UNSIGNED_SHORT     };
+enum enum_unsigned_int      : unsigned int        { ENUM_UNSIGNED_INT       };
+enum enum_unsigned_long     : unsigned long       { ENUM_UNSIGNED_LONG      };
+enum enum_unsigned_long_long: unsigned long long  { ENUM_UNSIGNED_LONG_LONG };
 
 static bool test_UNDERLYING_TYPE() {
-  enum test_enum_underlying_type e;
+  enum enum_char                ec;
+  enum enum_signed_char         esc;
+  enum enum_short               es;
+  enum enum_int                 ei;
+  enum enum_long                el;
+  enum enum_long_long           ell;
+  enum enum_unsigned_char       euc;
+  enum enum_unsigned_short      eus;
+  enum enum_unsigned_int        eui;
+  enum enum_unsigned_long       eul;
+  enum enum_unsigned_long_long  eull;
+
   TEST_FUNC_BEGIN();
-  TEST( IS_SAME_TYPE( typeof(e), unsigned char ) );
+  TEST( IS_SAME_TYPE( typeof(ec),   char                ) );
+  TEST( IS_SAME_TYPE( typeof(esc),  signed char         ) );
+  TEST( IS_SAME_TYPE( typeof(es),   short               ) );
+  TEST( IS_SAME_TYPE( typeof(ei),   int                 ) );
+  TEST( IS_SAME_TYPE( typeof(el),   long                ) );
+  TEST( IS_SAME_TYPE( typeof(ell),  long long           ) );
+  TEST( IS_SAME_TYPE( typeof(euc),  unsigned char       ) );
+  TEST( IS_SAME_TYPE( typeof(eus),  unsigned short      ) );
+  TEST( IS_SAME_TYPE( typeof(eui),  unsigned int        ) );
+  TEST( IS_SAME_TYPE( typeof(eul),  unsigned long       ) );
+  TEST( IS_SAME_TYPE( typeof(eull), unsigned long long  ) );
   TEST_FUNC_END();
 }
 
