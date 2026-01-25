@@ -141,7 +141,7 @@ as issues are identified.
 
   it should instead say:
 
-  > so set the expected value to the actual value instead.
+  > ... so set the expected value to the actual value instead.
 
 + §17.6 The ``ABA Problem'' (p. 260)
 
