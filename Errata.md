@@ -20,6 +20,84 @@ as issues are identified.
 
   > ... any signed integer −128 to 127, ...
 
++ §1.7 `const` (p. 18)
+
+  Where it says:
+
+  > On line 5, even though `pcc` is a pointer to `const char` ...
+
+  it should instead say:
+
+  > On line 5, even though `ncpc` is a pointer to `const char` ...
+
++ §1.9 Structures (p. 24)
+
+  Where it says:
+
+  > Line 4 uses `strcpy` to copy `s` to the memory address
+  > `str + str->len` ...
+
+  it should instead say:
+
+  > Line 4 uses `strcpy` to copy `s` to the memory address
+  > `str->contents + str->len` ...
+
+### Chapter 3: Operators
+
++ §3.14.3 Casting Pointers (p. 56)
+
+  Where it says:
+
+  > The `(int32_t*)` casts the address of the 4-byte char buffer `int32_buf` to
+  > be a pointer to `uint32_t` instead.  The first `*` then dereferences that
+  > address and the `=` writes the bytes as if they really were a `uint32_t`.
+
+  it should instead say:
+
+  > The `(int32_t*)` casts the address of the 4-byte char buffer `int32_buf` to
+  > be a pointer to `int32_t` instead.  The first `*` then dereferences that
+  > address and the `=` writes the bytes as if they really were an `int32_t`.
+
+### Chapter 4: Declarations
+
++ §4.8 `alignas` (p. 69)
+
+  Where it says:
+
+  > so it ensures that it's aligned the same as an `int` would be.
+
+  it should instead say:
+
+  > so it ensures that it's aligned the same as an `int32_t` would be.
+
+### Chapter 6: Arrays and Pointers
+
++ §6.13 Dynamically Allocating 2D Arrays (p. 95)
+
+  Where it says:
+
+  > Line 6 ...
+
+  it should instead say:
+
+  > Line 7 ...
+
+  Where it says:
+
+  > Line 7 ...
+
+  it should instead say:
+
+  > Line 8 ...
+
+  Where it says:
+
+  > Line 8-9 ...
+
+  it should instead say:
+
+  > Line 9-10 ...
+
 ### Chapter 14: Multithreading
 
 + §14.4 Mutexes (p. 223)
@@ -37,6 +115,65 @@ as issues are identified.
   ```
 
   (The `*` was erronously allowed by `clang`, but is illegal in C.)
+
++ §14.5 Condition Variables (p. 227)
+
+  Where listing 14.7 says:
+
+  ```c
+  work_copy = work_avail;
+  ```
+
+  it should instead say:
+
+  ```c
+  work_copy = work_avail;
+  work_avail = false;
+  ```
+
+### Chapter 17: `_Atomic`
+
++ §17.4 Compare and Swap (p. 296)
+
+  Where is says:
+
+  > ... so do nothing
+
+  it should instead say:
+
+  > so set the expected value to the actual value instead.
+
++ §17.6 The ``ABA Problem'' (p. 260)
+
+  Where it says:
+
+  > Line 5 ...
+
+  it should instead say:
+
+  > Line 6 ...
+
+  Where it says:
+
+  > Note that `head->next` has been updated to be the updated `*plist`, the
+  > current head.
+
+  it should instead say:
+
+  > Note that `head` has been updated to be the updated `*plist`, the
+  > current head.
+
+### Chapter 18: Debugging
+
++ §18.7.1 Recommended Warnings (p. 273)
+
+  Where it says:
+
+  > ... such that when `sum` < ε ...
+
+  it should instead say:
+
+  > ... such that when |`sum`| < ε ...
 
 ### Chapter 19: `_Generic`
 
