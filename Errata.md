@@ -98,6 +98,36 @@ as issues are identified.
 
   > Line 9-10 ...
 
+### Chapter 12: Input, Output, and Files
+
++ §12.1 Output (p. 179)
+
+  Where it says:
+
+  ```c
+  int fputc(char c, FILE *file)
+  int putc(char c, FILE *file)
+  int putchar(char c)
+  ```
+
+  it should instead say:
+
+  ```c
+  int fputc(int c, FILE *file)
+  int putc(int c, FILE *file)
+  int putchar(int c)
+  ```
+
++ §12.4 Input (p. 196)
+
+  In table 12.4 where it says:
+
+  > `aAeFfFgG`
+
+  it should instead say:
+
+  > `aAeEfFgG`
+
 ### Chapter 14: Multithreading
 
 + §14.4 Mutexes (p. 223)
