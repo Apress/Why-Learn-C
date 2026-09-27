@@ -1,6 +1,6 @@
 # gnulib-common.m4
-# serial 113
-dnl Copyright (C) 2007-2025 Free Software Foundation, Inc.
+# serial 124
+dnl Copyright (C) 2007-2026 Free Software Foundation, Inc.
 dnl This file is free software; the Free Software Foundation
 dnl gives unlimited permission to copy and/or distribute it,
 dnl with or without modifications, as long as this notice is preserved.
@@ -296,11 +296,9 @@ AC_DEFUN([gl_COMMON_BODY], [
    we cannot omit the storage-class specifier.  Therefore, the following rule
    applies:
      * The macros
-         _GL_ATTRIBUTE_CONST
          _GL_ATTRIBUTE_DEPRECATED
          _GL_ATTRIBUTE_MAYBE_UNUSED
          _GL_ATTRIBUTE_NODISCARD
-         _GL_ATTRIBUTE_PURE
          _GL_ATTRIBUTE_REPRODUCIBLE
          _GL_ATTRIBUTE_UNSEQUENCED
        which may expand to bracket syntax [[...]], must come first, before the
@@ -414,22 +412,41 @@ AC_DEFUN([gl_COMMON_BODY], [
 #endif
 
 /* _GL_ATTRIBUTE_CONST declares:
-   It is OK for a compiler to move calls to the function and to omit
-   calls to the function if another call has the same arguments or the
-   result is not used.
-   This attribute is safe for a function that neither depends on
-   nor affects state, and always returns exactly once -
+   It is OK for a compiler to move a call, or omit a duplicate call
+   and reuse a cached return value, even if the state changes between calls.
+   It is also OK to omit a call if the result is not used.
+   This attribute is safe if the function does not change observable state,
+   returns a value determined solely by its arguments' values
+   without examining state, and always returns exactly once -
    e.g., does not raise an exception, call longjmp, or loop forever.
    (This attribute is stricter than _GL_ATTRIBUTE_PURE because the
-   function cannot observe state.  It is stricter than
-   _GL_ATTRIBUTE_UNSEQUENCED because the function must return exactly
-   once and cannot depend on state addressed by its arguments.)  */
+   function cannot observe state.  Unlike _GL_ATTRIBUTE_UNSEQUENCED
+   the function must return exactly once and cannot access state
+   addressed by its pointer arguments or that happens to have the same
+   value for all calls to the function, but the function is allowed to
+   return a pointer to storage that can be modified later.  */
 /* Applies to: functions.  */
 #ifndef _GL_ATTRIBUTE_CONST
 # if _GL_HAS_ATTRIBUTE (const)
 #  define _GL_ATTRIBUTE_CONST __attribute__ ((__const__))
 # else
-#  define _GL_ATTRIBUTE_CONST _GL_ATTRIBUTE_UNSEQUENCED
+#  define _GL_ATTRIBUTE_CONST
+# endif
+#endif
+
+/* _GL_ATTRIBUTE_COUNTED_BY (C) declares that the number of elements of
+   the field is given by C, which must be another field in the same struct.
+   The programmer is responsible for guaranteeing some invariants; see
+   <https://gcc.gnu.org/onlinedocs/gcc/Common-Attributes.html> for details.  */
+/* Applies to struct fields of type array or pointer (to data).  */
+#ifndef _GL_ATTRIBUTE_COUNTED_BY
+/* This attributes is supported
+     - for fields of array type: by gcc >= 16, clang >= 18,
+     - for fields of pointer type: by gcc >= 16.2, clang >= 19.  */
+# if _GL_GNUC_PREREQ (16, 2) || (defined __clang__ && __clang_major__ >= 19)
+#  define _GL_ATTRIBUTE_COUNTED_BY(c) __attribute__ ((__counted_by__ (c)))
+# else
+#  define _GL_ATTRIBUTE_COUNTED_BY(c)
 # endif
 #endif
 
@@ -590,7 +607,9 @@ AC_DEFUN([gl_COMMON_BODY], [
 
 /* _GL_ATTRIBUTE_MAYBE_UNUSED declares that it is not a programming mistake if
    the entity is not used.  The compiler should not warn if the entity is not
-   used.  */
+   used.  However, 'int _GL_UNNAMED (i)' is preferable to
+   '_GL_ATTRIBUTE_MAYBE_UNUSED int i' when parameter I is unused
+   regardless of preprocessor macro settings.  */
 /* Applies to:
      - function, variable,
      - struct, union, struct/union member,
@@ -744,39 +763,40 @@ AC_DEFUN([gl_COMMON_BODY], [
 #endif
 
 /* _GL_ATTRIBUTE_PURE declares:
-   It is OK for a compiler to move calls to the function and to omit
-   calls to the function if another call has the same arguments or the
-   result is not used, and if observable state is the same.
-   This attribute is safe for a function that does not affect observable state
-   and always returns exactly once.
+   It is OK for a compiler to move a call, or omit a duplicate call
+   and reuse a cached return value, if observable state is the same.
+   It is also OK to omit a call if the return value is not used.
+   This attribute is safe if the function does not change observable state,
+   returns a value determined solely by its arguments's values
+   together with observable state, and always returns exactly once.
    (This attribute is looser than _GL_ATTRIBUTE_CONST because the function
-   can depend on observable state.  It is stricter than
-   _GL_ATTRIBUTE_REPRODUCIBLE because the function must return exactly
-   once and cannot affect state addressed by its arguments.)  */
+   can depend on observable state.
+   Unlike _GL_ATTRIBUTE_REPRODUCIBLE the function must return exactly
+   once and cannot change state addressed by its arguments, but the
+   function can return a pointer to storage whose contents change later.)  */
 /* Applies to: functions.  */
 #ifndef _GL_ATTRIBUTE_PURE
 # if _GL_HAS_ATTRIBUTE (pure)
 #  define _GL_ATTRIBUTE_PURE __attribute__ ((__pure__))
 # else
-#  define _GL_ATTRIBUTE_PURE _GL_ATTRIBUTE_REPRODUCIBLE
+#  define _GL_ATTRIBUTE_PURE
 # endif
 #endif
 
 /* _GL_ATTRIBUTE_REPRODUCIBLE declares:
-   It is OK for a compiler to move calls to the function and to omit duplicate
-   calls to the function with the same arguments, so long as the state
-   addressed by its arguments is the same and is updated in time for
-   the rest of the program.
-   This attribute is safe for a function that is effectless and idempotent; see
-   ISO C 23 § 6.7.12.7 for a definition of these terms.
+   It is OK for a compiler to move a call, or omit a duplicate call
+   and reuse a cached value returned either directly or indirectly via
+   a pointer, if other observable state is the same;
+   however, pointer arguments cannot alias.
+   This attribute is safe for a function that is effectless and idempotent;
+   see ISO C 23 § 6.7.13.8 for a definition of these terms.
    (This attribute is looser than _GL_ATTRIBUTE_UNSEQUENCED because
-   the function need not be stateless and idempotent.  It is looser
-   than _GL_ATTRIBUTE_PURE because the function need not return
-   exactly once and can affect state addressed by its arguments.)
+   the function need not be stateless or independent.
+   Unlike _GL_ATTRIBUTE_PURE the function need not return exactly once
+   and can change state addressed by its pointer arguments, but the
+   function cannot return a pointer to storage whose contents change later.)
    See also <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2956.htm> and
-   <https://stackoverflow.com/questions/76847905/>.
-   ATTENTION! Efforts are underway to change the meaning of this attribute.
-   See <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3424.htm>.  */
+   <https://stackoverflow.com/questions/76847905/>.  */
 /* Applies to: functions, pointer to functions, function types.  */
 #ifndef _GL_ATTRIBUTE_REPRODUCIBLE
 /* This may be revisited when gcc and clang support [[reproducible]] or possibly
@@ -816,20 +836,22 @@ AC_DEFUN([gl_COMMON_BODY], [
 #endif
 
 /* _GL_ATTRIBUTE_UNSEQUENCED declares:
-   It is OK for a compiler to move calls to the function and to omit duplicate
-   calls to the function with the same arguments, so long as the state
-   addressed by its arguments is the same.
+   It is OK for a compiler to move a call, or omit a duplicate call
+   and reuse a cached value returned either directly or indirectly via
+   a pointer, if the state addressed by its pointer arguments is the same;
+   however, pointer arguments cannot alias.
    This attribute is safe for a function that is effectless, idempotent,
-   stateless, and independent; see ISO C 23 § 6.7.12.7 for a definition of
+   stateless, and independent; see ISO C 23 § 6.7.13.8 for a definition of
    these terms.
    (This attribute is stricter than _GL_ATTRIBUTE_REPRODUCIBLE because
-   the function must be stateless and independent.  It is looser than
-   _GL_ATTRIBUTE_CONST because the function need not return exactly
-   once and can depend on state addressed by its arguments.)
+   the function must be stateless and independent.  Unlike
+   _GL_ATTRIBUTE_CONST the function need not return exactly once, and
+   can depend on state accessed via its pointer arguments or that
+   happens to have the same value for all calls to the function, but
+   the function cannot return a pointer to storage whose contents
+   change later.)
    See also <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2956.htm> and
-   <https://stackoverflow.com/questions/76847905/>.
-   ATTENTION! Efforts are underway to change the meaning of this attribute.
-   See <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3424.htm>.  */
+   <https://stackoverflow.com/questions/76847905/>.  */
 /* Applies to: functions, pointer to functions, function types.  */
 #ifndef _GL_ATTRIBUTE_UNSEQUENCED
 /* This may be revisited when gcc and clang support [[unsequenced]] or possibly
@@ -869,7 +891,22 @@ AC_DEFUN([gl_COMMON_BODY], [
 # endif
 #endif
 
-/* The following attributes enable detection of multithread-safety problems
+/* _GL_UNNAMED (ID) is the "name" of an unnamed function parameter.
+   Each of the function's unnamed parameters should have a unique "name".
+   The "name" cannot be used.  This ports both to C17 and earlier, which
+   lack unnamed parameters, and to C++ and later C, which have them.  */
+/* Applies to:
+     - function parameters.  */
+#ifndef _GL_UNNAMED
+# if ((defined __STDC_VERSION__ ? __STDC_VERSION__ : 0) < 202311 \
+      && !defined __cplusplus)
+#  define _GL_UNNAMED(id) unnamed_##id _GL_ATTRIBUTE_UNUSED
+# else
+#  define _GL_UNNAMED(id)
+# endif
+#endif
+
+/* The following attributes enable detection of thread safety problems
    and resource leaks at compile-time, by clang ≥ 15, when the warning option
    -Wthread-safety is enabled.  For usage, see
    <https://clang.llvm.org/docs/ThreadSafetyAnalysis.html>.  */
@@ -895,6 +932,31 @@ AC_DEFUN([gl_COMMON_BODY], [
      __attribute__ ((__release_capability__ (resource)))
 # else
 #  define _GL_ATTRIBUTE_RELEASE_CAPABILITY(resource)
+# endif
+#endif
+])
+  AH_VERBATIM([sanitizer_features],
+[/* Sanitizer features.  */
+#ifdef __has_feature
+# if !defined __SANITIZE_ADDRESS__ && __has_feature (address_sanitizer)
+#  define __SANITIZE_ADDRESS__ 1
+# endif
+# if !defined __SANITIZE_HWADDRESS__ && __has_feature (hwaddress_sanitizer)
+#  define __SANITIZE_HWADDRESS__ 1
+# endif
+# if !defined __SANITIZE_LEAK__ && __has_feature (leak_sanitizer)
+#  define __SANITIZE_LEAK__ 1
+# endif
+# if !defined __SANITIZE_THREAD__ && __has_feature (thread_sanitizer)
+#  define __SANITIZE_THREAD__ 1
+# endif
+  /* Although the following sanitizers are in Clang not GCC,
+     define GCC-like macro names for consistency and convenience.  */
+# if !defined __SANITIZE_MEMORY__ && __has_feature (memory_sanitizer)
+#  define __SANITIZE_MEMORY__ 1
+# endif
+# if !defined __SANITIZE_SCUDO__ && __has_feature (scudo_sanitizer)
+#  define __SANITIZE_SCUDO__ 1
 # endif
 #endif
 ])
@@ -1211,9 +1273,9 @@ Amsterdam
 ])
 
 # AC_C_RESTRICT
-# This definition is copied from post-2.70 Autoconf and overrides the
-# AC_C_RESTRICT macro from autoconf 2.60..2.70.
-m4_version_prereq([2.70.1], [], [
+# This definition is copied from post-2.73 Autoconf and overrides the
+# AC_C_RESTRICT macro from autoconf 2.60..2.73.
+m4_version_prereq([2.73.1], [], [
 AC_DEFUN([AC_C_RESTRICT],
 [AC_CACHE_CHECK([for C/C++ restrict keyword], [ac_cv_c_restrict],
   [ac_cv_c_restrict=no
@@ -1239,9 +1301,14 @@ AC_DEFUN([AC_C_RESTRICT],
   ])
  AH_VERBATIM([restrict],
 [/* Define to the equivalent of the C99 'restrict' keyword, or to
-   nothing if this is not supported.  Do not define if restrict is
-   supported only directly.  */
+   nothing if this is not supported.  In particular it is not supported
+   in MSVC 14.44 and in g++ 7 on Solaris 11, although these compilers
+   define __STDC_VERSION__ to 199901L.
+   Do not define if restrict is supported directly.  */
+#if ! (defined __STDC_VERSION__ && 199901L <= __STDC_VERSION__ \
+       && !defined _MSC_VER && !defined __cplusplus)
 #undef restrict
+#endif
 /* Work around a bug in older versions of Sun C++, which did not
    #define __restrict__ or support _Restrict or __restrict__
    even though the corresponding Sun C compiler ended up with
@@ -1402,11 +1469,12 @@ AC_DEFUN([gl_CC_GNULIB_WARNINGS],
     dnl -Wno-pedantic                         >= 4.8          >= 3.9
     dnl -Wno-sign-compare                     >= 3            >= 3.9
     dnl -Wno-sign-conversion                  >= 4.3          >= 3.9
+    dnl -Wno-string-plus-int                  -               >= 3.9
     dnl -Wno-tautological-out-of-range-compare  -             >= 3.9
     dnl -Wno-type-limits                      >= 4.3          >= 3.9
     dnl -Wno-undef                            >= 3            >= 3.9
     dnl -Wno-unsuffixed-float-constants       >= 4.5
-    dnl -Wno-unused-const-variable            >= 4.4          >= 3.9
+    dnl -Wno-unused-const-variable            >= 6.1          >= 3.9
     dnl -Wno-unused-function                  >= 3            >= 3.9
     dnl -Wno-unused-parameter                 >= 3            >= 3.9
     dnl
@@ -1430,13 +1498,14 @@ AC_DEFUN([gl_CC_GNULIB_WARNINGS],
       -Wno-pedantic
       #endif
       #if 3 < __clang_major__ + (9 <= __clang_minor__)
+      -Wno-string-plus-int
       -Wno-tautological-constant-out-of-range-compare
       #endif
       #if (__GNUC__ + (__GNUC_MINOR__ >= 3) > 4 && !defined __clang__) || (__clang_major__ + (__clang_minor__ >= 9) > 3)
       -Wno-sign-conversion
       -Wno-type-limits
       #endif
-      #if (__GNUC__ + (__GNUC_MINOR__ >= 4) > 4 && !defined __clang__) || (__clang_major__ + (__clang_minor__ >= 9) > 3)
+      #if (__GNUC__ + (__GNUC_MINOR__ >= 1) > 6 && !defined __clang__) || (__clang_major__ + (__clang_minor__ >= 9) > 3)
       -Wno-unused-const-variable
       #endif
       #if (__GNUC__ + (__GNUC_MINOR__ >= 5) > 4 && !defined __clang__)
