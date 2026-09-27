@@ -14,11 +14,12 @@ struct ht_insert_rv ht_insert( struct hash_table *ht,
   }
 
   entry = malloc( sizeof(struct ht_entry) + data_size );
-  *entry =
-    (struct ht_entry){ .next = head->next, .prev = head };
+  *entry = (struct ht_entry){
+    .next = head->next, .prev = head, .hash = hash
+  };
   if ( head->next != nullptr )
     head->next->prev = entry;
-  *head = (struct ht_entry){ .next = entry, .hash = hash };
+  head->next = entry;
 
   auto const lf = ++ht->size / (double)n_buckets;
   if ( lf >= ht->max_lf )

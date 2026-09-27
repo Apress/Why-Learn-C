@@ -270,6 +270,111 @@ as issues are identified.
     ) )
   ```
 
+### Chapter 25: Maps
+
++ §25.2 Hash Table Types (p. 336)
+
+  The declaration of `ht_entry` should instead be:
+
+  ```c
+  struct ht_entry {
+    struct ht_entry  *next;
+    struct ht_entry  *prev;
+    ht_hash_val       hash;
+    alignas(max_align_t) char data[];
+  };
+  ```
+
+  Specifically, the `union` should be removed.
+
++ §25.2 Hash Table Types (p. 337)
+
+  The paragraph that reads:
+
+  > Why is `prev` in a union with `hash`? Since the head entry doesn’t need
+  > `prev`, we might as well make use of the otherwise wasted space by storing
+  > _h_(_k_) there since all keys in the same bucket have the same value. As
+  > we’ll see, this eliminates recalculating _h_(_k_) when growing (§25.5) the
+  > hash table.
+
+  should be deleted.
+
+  While it's true that the head entry doesn't need `prev`, it's _not_ true that
+  all keys in the same bucket have the same _h_(_k_).  Instead, they all have
+  the same _remainder_, i.e., _h_(_k_) `%` _m_ or _i_ (the index into _B_).
+  Hence, it's necessary to store `hash` per entry.
+
++ §25.4 Insert (p. 340)
+
+  Since `ht_entry` now uses `hash` per entry, the `ht_insert` function needs to
+  change slightly.  It should now be:
+
+  ```c
+  struct ht_insert_rv ht_insert( struct hash_table *ht,
+                                 void const *key,
+                                 size_t data_size ) {
+    auto const hash = (*ht->hash_fn)( key );
+    auto const n_buckets = HT_PRIME[ ht->prime_idx ];
+    auto const b = hash % n_buckets;
+    struct ht_entry *const head = &ht->buckets[b], *entry;
+
+    for ( entry = head->next; entry != nullptr; entry = entry->next ) {
+      if ( (*ht->cmp_fn)( key, entry->data ) == 0 )
+        return (struct ht_insert_rv){ entry, .inserted = false };
+    }
+
+    entry = malloc( sizeof(struct ht_entry) + data_size );
+    *entry = (struct ht_entry){
+      .next = head->next, .prev = head, .hash = hash
+    };
+    if ( head->next != nullptr )
+      head->next->prev = entry;
+    head->next = entry;
+
+    auto const lf = ++ht->size / (double)n_buckets;
+    if ( lf >= ht->max_lf )
+      ht_grow( ht );
+
+    return (struct ht_insert_rv){ entry, .inserted = true };
+  }
+  ```
+
+  Specifically, the initialization of `.hash` moved from `head` to `entry`.
+
++ §25.5 Growing (p. 341)
+
+  Since `ht_entry` now uses `hash` per entry, the `ht_grow` function needs to
+  change slightly.  It should now be:
+
+  ```c
+  static void ht_grow( struct hash_table *ht ) {
+    auto const new_n_buckets = HT_PRIME[ ++ht->prime_idx ];
+    struct ht_entry *const new_buckets =
+      calloc( new_n_buckets, sizeof(struct ht_entry) );
+
+    for ( unsigned b = 0; b < new_n_buckets; ++b ) {
+      for ( struct ht_entry *entry = ht->buckets[b].next, *next;
+            entry != nullptr; entry = next ) {
+        auto const new_head = &new_buckets[ entry->hash % new_n_buckets ];
+
+        next = entry->next;
+        entry->next = new_head->next;
+        entry->prev = new_head;
+
+        if ( new_head->next != nullptr )
+          new_head->next->prev = entry;
+        new_head->next = entry;
+      }
+    }
+
+    free( ht->buckets );
+    ht->buckets = new_buckets;
+  }
+  ```
+
+  Specifically, the local variable `hash` has been deleted and `entry->hash` is
+  now used instead.
+
 ### Index
 
 + `nullptr` (p. 395)
